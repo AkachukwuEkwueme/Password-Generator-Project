@@ -11,11 +11,11 @@ public static void main(String[] args){
     String[] savedchoices = passwordRules();
     int passlength= Integer.parseInt(savedchoices[3]);
     String password = passwordGenerator(savedchoices[0],savedchoices[1],savedchoices[2],passlength);
-    System.out.println("Generated password: " + password);
+    System.out.println("\n Generated password: " + password);
 
     
     final String finalpassword = passwordCheck(password);
-    System.out.println("The Password Result is: " + finalpassword);
+    System.out.println("\n The Password Result is: " + finalpassword);
    // System.out.println("Password Score: " + score);
     //System.out.println("Password Result: " + result);
     //password = passwordCheck();
@@ -126,10 +126,10 @@ System.out.println("The Password Strength will be checked and graded out of 10")
         result = "Good Password";
     }
     if(score==10){
-        result = "\n Amazing and secure Password!!! Welcome to MedFetch!!! ";
+        result = "Amazing and secure Password!!! Welcome to MEDFetch!!! ";
     }
 
-    System.out.println("The Password Score is: " + score);
+    System.out.println("\n The Password Score is: " + score + "/10");
 return result;
     //Method for checking strength for password
 
