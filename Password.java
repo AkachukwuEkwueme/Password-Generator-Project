@@ -11,7 +11,14 @@ public static void main(String[] args){
     String[] savedchoices = passwordRules();
     int passlength= Integer.parseInt(savedchoices[3]);
     String password = passwordGenerator(savedchoices[0],savedchoices[1],savedchoices[2],passlength);
-    System.out.println(password);
+    System.out.println("Generated password: " + password);
+
+    
+    final String finalpassword = passwordCheck(password);
+    System.out.println("The Password Result is: " + finalpassword);
+   // System.out.println("Password Score: " + score);
+    //System.out.println("Password Result: " + result);
+    //password = passwordCheck();
     //System.out.println(passwordGenerator("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+", 15));
 
 }
@@ -31,7 +38,7 @@ public static String[] passwordRules() { //Method for instructing rules for pass
     String thirdchoice= myObj.nextLine();
     System.out.println("Use of Characters: " + thirdchoice);
 
-    System.out.println("\n Enter the desired length of the Password (between 7 and 15)");
+    System.out.println("\n Enter the desired length of the Password (between 7 and 15, preferably at least 12)");
     int passlength = myObj.nextInt();
     System.out.println("Password length: " + passlength);
     while (passlength > 15 || passlength < 7) {
@@ -69,9 +76,63 @@ public static String passwordGenerator(String firstchoice, String secondchoice, 
 }
 
 
-static void passwordCheck() {
+public static String passwordCheck(String password){ //password, int score, String result) {
 
-    //Method for instructing rules for password
+    int score=0;
+    String result="";
+    String numbers = "0123456789";
+    String lowerletters = "abcdefghijklmnopqrstuvwxyz";
+    String upperletters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String symbols = "!@#$%^&*()_+";
+
+
+    if(password.length()>10){
+        score = score +2;
+    }
+    //all other if statements are not registering because its scanning the whole string above rather
+    //than picking out one element of the numbers,letters, characters as intended
+    if(password.matches(".*[0-9]+.*")== true) {
+        score = score +2;
+    }
+    if(password.matches(".*[a-z]+.*")== true){
+        score = score +2;
+    }
+    if(password.matches(".*[A-Z]+.*")== true){
+        score = score +2;
+    }
+    if(password.contains("!") || password.contains("@") || password.contains("#") || password.contains("$") || password.contains("%") || password.contains("^") || password.contains("&") || password.contains("*")|| password.contains("(") || password.contains(")") || password.contains("_")|| password.contains("+")){
+        score = score +2;
+    }
+
+System.out.println("The Password Strength will be checked and graded out of 10");
+
+    if(score==0){
+        result = "Horrible Password";
+    }
+
+    if(score==2){
+        result = "Poor Password";
+    }
+
+    if(score==4){
+        result = "Bad Password";
+    }
+
+    if(score==6){
+        result = "Decent Password";
+    }
+
+    if(score==8){
+        result = "Good Password";
+    }
+    if(score==10){
+        result = "\n Amazing and secure Password!!! Welcome to MedFetch!!! ";
+    }
+
+    System.out.println("The Password Score is: " + score);
+return result;
+    //Method for checking strength for password
 
 }
+
 }
